@@ -1,40 +1,40 @@
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import Home from './Pages/Home/Home/Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import NotFound from './Pages/NotFound/NotFound';
-import Booking from './Pages/Booking/Booking/Booking';
+import products from './Pages/products/products/products';
 import Login from './Pages/Login/Login/Login';
-import Header from './Pages/Shared/Header/Header';
-import AuthProvider from './contexts/AuthProvider';
+import Register from './Pages/Login/Register/Register';
+import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
-import Suggestion from './Pages/Suggestion/Suggestion';
-import Submit from './Pages/Suggestion/Submit';
-
+import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
-          <Header></Header>
           <Switch>
-            <Route exact path="/">
-              <Home></Home>
-            </Route>
+            <PrivateRoute path="/products">
+              <products />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
             <Route path="/home">
-              <Home></Home>
+              <Home />
             </Route>
             <Route path="/login">
-              <Login></Login>
+              <Login />
             </Route>
-            <PrivateRoute path="/booking/:serviceId">
-              <Booking></Booking>
-            </PrivateRoute>
-            <PrivateRoute path="/submit">
-              <Submit></Submit>
-            </PrivateRoute>
-            <Route path="*">
-              <NotFound></NotFound>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route exact path="/">
+              <Home />
             </Route>
           </Switch>
         </Router>
