@@ -19,3 +19,5 @@
 - Subscribe.
 - Footer.
 - Manage Booking.
+- Admin.
+- Dashboard.
